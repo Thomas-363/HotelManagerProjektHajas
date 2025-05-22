@@ -1,0 +1,377 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 100px 0 0 0;
+}
+
+header {
+    height: 100px;
+    width: 100%;
+    background-color: #2c3e50;
+    display: flex;
+    padding: 0 2em;
+    justify-content: space-between;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    gap: 2rem;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: auto;
+    font-weight: bold;
+}
+
+.login-logo,
+.logo a {
+    all: unset;
+    cursor: pointer;
+    color: white;
+    font-size: 2em;
+    font-weight: bold;
+    padding-right: 2rem;
+}
+
+.logo a {
+    border-right: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.logo a:hover {
+    color: #1abc9c;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    position: relative;
+}
+
+.nav-links li {
+    position: relative;
+}
+
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background 0.3s;
+    cursor: pointer;
+}
+
+.nav-links li a:hover {
+    background-color: #1abc9c;
+}
+
+/* ARTICLE */
+article {
+    width: 80%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 50px 50px 10px 50px;
+    flex-grow: 1;
+}
+
+.dashboard-overview {
+    max-width: 800px;
+    margin: auto;
+    padding: 2rem;
+}
+
+.dashboard-header h1 {
+    font-size: 2em;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+}
+
+.dashboard-header p {
+    font-size: 1.1em;
+    color: #555;
+}
+
+/* INFO CARDS */
+.info-cards {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.info-card {
+    flex: 1 1 30%;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.07);
+    padding: 2rem;
+    text-align: center;
+    transition: transform 0.2s ease;
+    color: black;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    background-color: #f9f9f9;
+}
+
+.info-card h2 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.info-card p {
+    font-size: 1rem;
+}
+
+/* FOOTER */
+footer {
+    box-sizing: border-box;
+    background-color: #2c3e50;
+    color: white;
+    padding: 20px 0 0 0;
+    height: 250px;
+    text-align: center;
+}
+
+footer-content h2 {
+    margin-bottom: 0.5rem;
+    color: #1abc9c;
+}
+
+footer-content p,
+footer-contact p {
+    margin: 0.2rem 0;
+    color: #ecf0f1;
+    font-size: 0.95rem;
+}
+
+footer-bottom {
+    margin-top: 1.5rem;
+    font-size: 0.85rem;
+    color: #bdc3c7;
+    border-top: 1px solid #3d566e;
+    padding-top: 1rem;
+}
+
+/* DROPDOWN MENU */
+.dropdown-menu {
+    list-style: none;
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #2c3e50;
+    border-radius: 5px;
+    width: auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    padding: 0.3rem 0;
+    text-align: center;
+    min-width: 160px;
+}
+
+.dropdown-menu li {
+    width: 100%;
+}
+
+.dropdown-menu li a {
+    display: flex;
+    color: white;
+    white-space: nowrap;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85em;
+    transition: background 0.2s ease-in-out;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu li a:hover {
+    background-color: #1abc9c;
+}
+
+/* FORM */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 0.4rem;
+}
+
+.form-control {
+    width: 700px;
+    padding: 0.7rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.form-control:focus {
+    border-color: #1abc9c;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(26, 188, 156, 0.2);
+}
+
+.text-danger {
+    color: #e74c3c;
+    font-size: 0.85rem;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* ROOM STATUS CARDS */
+.info-card.room {
+    flex: 1 1 250px;
+    min-width: 200px;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-size: 1rem;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    color: white;
+}
+
+.info-card.room:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.info-card.room.green {
+    background-color: #2ecc71;
+}
+
+.info-card.room.red {
+    background-color: #e74c3c;
+}
+
+.info-card.room.orange {
+    background-color: #ff9900;
+}
+
+/* TOAST NOTIFIKÁCIE */
+#toast-container {
+  position: fixed;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1050;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  width: auto;
+  max-width: 90vw;
+  pointer-events: none;
+}
+
+.toast {
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    background-color: #333;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+.toast-info {
+    background-color: #17a2b8;
+}
+
+.toast-success {
+    background-color: #28a745;
+}
+
+.toast-error {
+    background-color: #dc3545;
+}
+
+/* BUTTONS */
+.button {
+    display: inline-block;
+    padding: 0.6rem 1.4rem;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    font-size: 1rem;
+    font-family: 'Segoe UI', sans-serif;
+    line-height: 1.2;
+    box-sizing: border-box;
+}
+
+.button-primary {
+    background-color: #1abc9c;
+    color: white;
+}
+
+.button-primary:hover {
+    background-color: #16a085;
+}
+
+
+.button-secondary {
+    background-color: transparent;
+    color: #2c3e50;
+    border: 2px solid #ccc;
+    padding: 0.4rem 1rem;
+    font-size: 0.9rem;
+}
+
+.button-secondary:hover {
+    background-color: #ecf0f1;
+}
+
+
+.button-save {
+    background-color: #28a745;
+    color: white;
+}
+
+.button-save:hover {
+    background-color: #218838;
+}
+
+
+.button-delete {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.button-delete:hover {
+    background-color: #c0392b;
+}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="sk" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Manager</title>
+
+
+    <link rel="stylesheet" th:href="@{/styles/style.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/styles/tables.css}" type="text/css">
+    <script th:src="@{/scripts/toast.js}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+<header th:fragment="header">
+
+    <nav class="navbar">
+        <div class="logo"><a th:href="@{/}">HotelManager</a></div>
+        <ul class="nav-links">
+            <li class="dropdown" sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_RECEPTIONIST')">
+                <a class="dropdown-toggle">Guests ▾</a>
+                <ul class="dropdown-menu">
+                    <li><a th:href="@{/customers/accommodate}">Accommodate</a></li>
+                    <li><a th:href="@{/customers/checkout}">Check Out</a></li>
+                    <li><a th:href="@{/customers/index}">Accommodated Guests</a></li>
+                </ul>
+            </li>
+            <li class="dropdown" sec:authorize="hasAnyRole('ROLE_MANAGER', 'ROLE_ADMIN')"
+            >
+                <a class="dropdown-toggle">Employees ▾</a>
+                <ul class="dropdown-menu">
+                    <li><a th:href="@{/account/register}">Create</a></li>
+                    <li><a th:href="@{/account/remove}">Remove</a></li>
+                    <li><a th:href="@{/account/index}">All Employees</a></li>
+                </ul>
+            </li>
+            <li><a href="#" onclick="document.getElementById('logoutForm').submit(); return false;">Log Out</a></li>
+        </ul>
+        <form id="logoutForm" th:action="@{/account/logout}" method="post" style="display: none;"></form>
+    </nav>
+</header>
+
+
+<div id="toast-container" th:fragment="toastContainer"
+     style="position: fixed; top: 1rem; right: 1rem; z-index: 1050;">
+</div>
+
+
+<div th:each="room : ${rooms}"
+     class="info-card room"
+     th:classappend="${room.occupied == 0} ? ' green' : (${room.occupied == 1} ? ' orange' : ' red')"
+     th:fragment="roomMap">
+    <h2 th:text="'Room n. ' + ${room.number}">Room</h2>
+    <p th:text="${room.occupied == 0} ? 'Available' : 'Occupied by ' + ${room.occupied} + ' guest(s)'"></p>
+    <p th:text="'Capacity: ' + ${room.capacity}"></p>
+</div>
+
+
+
+<footer th:fragment="footer">
+    <div class="footer-content">
+        <h2>Hotel Manager</h2>
+        <p>Modern system for managing hotel reservations, rooms, and customers</p>
+        <div class="footer-contact">
+            <p>Email: info@hotelmanager.sk</p>
+            <p>Tel: +421 123 456 789</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        &copy; 2025 Hotel Manager. All rights reserved.
+    </div>
+</footer>
+
+<div th:fragment="toastScript">
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+            let toastMessage = /*[[${toastMessage}]]*/ null;
+            let toastType = /*[[${toastType}]]*/ 'info';
+
+            if (toastMessage != null && toastMessage !== '') {
+                showToast(toastMessage, toastType);
+            }
+        /*]]>*/
+    </script>
+</div>
+
+</body>
+</html>

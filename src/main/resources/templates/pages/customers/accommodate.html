@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout.html :: head}"></head>
+
+<body>
+<header th:replace="~{fragments/layout.html :: header}"></header>
+
+<div th:replace="~{fragments/layout.html :: toastContainer}"></div>
+
+<article>
+    <div id="centered">
+
+        <h1>New Guest Accommodation</h1>
+
+
+        <section>
+            <form method="post"
+                  th:action="@{/customers/accommodate}"
+                  th:object="${customer}"
+                  class="form d-flex flex-column gap-2">
+
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input id="name" th:field="*{name}" class="form-control"/>
+                    <small class="text-danger" th:errors="*{name}"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="surname">Surname</label>
+                    <input id="surname" th:field="*{surname}" class="form-control"/>
+                    <small class="text-danger" th:errors="*{surname}"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input id="email" th:field="*{email}" class="form-control" type="email"/>
+                    <small class="text-danger" th:errors="*{email}"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="mobileNumber">Mobile Number</label>
+                    <input id="mobileNumber" th:field="*{mobileNumber}" class="form-control"/>
+                    <small class="text-danger" th:errors="*{mobileNumber}"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="roomNumber">Room Number</label>
+
+                    <select id="roomNumber"
+                            th:field="*{roomNumber}"
+                            class="form-control"
+                            required>
+                        <option value="" disabled selected>Select a room</option>
+                        <option th:each="room : ${freeRooms}"
+                                th:value="${room.number}"
+                                th:text="'Room ' + ${room.number} + ' (Free: ' + (${room.capacity - room.occupied}) + ')'">
+                        </option>
+                    </select>
+
+                    <small class="text-danger" th:errors="*{roomNumber}"></small>
+                </div>
+
+                <div class="form-group form-actions">
+                    <a class="button button-primary" th:href="@{/}">Back</a>
+                    <button type="submit" class="button button-save">Save</button>
+                </div>
+
+            </form>
+        </section>
+    </div>
+
+    <div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;">
+        <div th:replace="~{fragments/layout.html :: roomMap}"></div>
+    </div>
+
+</article>
+
+<footer th:replace="~{fragments/layout.html :: footer}"></footer>
+<div th:replace="~{fragments/layout.html :: toastScript}"></div>
+</body>
+</html>

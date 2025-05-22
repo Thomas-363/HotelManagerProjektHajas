@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{fragments/layout.html :: head}"></head>
+
+<body>
+<header th:replace="~{fragments/layout.html :: header}"></header>
+
+<div th:replace="~{fragments/layout.html :: toastContainer}"></div>
+
+<article>
+    <h1>Hotel staff</h1>
+
+    <section class="dashboard-overview">
+        <div class="info-card">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>Email</th>
+                    <th>Role <i class="fa fa-user"> </i></th>
+                    <th>Edit employee</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="user : ${users}">
+                    <td th:text="${user.name}">Name</td>
+                    <td th:text="${user.surname}">Surname</td>
+                    <td th:text="${user.email}">Email</td>
+                    <td th:text="${user.userRole}">Mobile</td>
+                    <td>
+                        <a th:href="@{'/account/index/edit/' + ${user.userId}}" class="button button-secondary">
+                            <i class="fa fa-edit" aria-hidden="true"></i> Edit
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</article>
+
+
+
+
+
+
+
+<footer th:replace="~{fragments/layout.html :: footer}"></footer>
+<div th:replace="~{fragments/layout.html :: toastScript}"></div>
+</body>
+</html>

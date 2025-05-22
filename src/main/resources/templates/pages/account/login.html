@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{fragments/layout.html :: head}"></head>
+
+<body>
+<header th:fragment="header">
+    <nav class="navbar">
+        <div class="login-logo">HotelManager</div>
+    </nav>
+</header>
+
+<div th:replace="~{fragments/layout.html :: toastContainer}"></div>
+
+
+<article>
+
+    <h1 style="color: black;">Login</h1>
+
+    <div th:if="${param.login_error}" style="color: red;">
+        Incorrect username or password.
+    </div>
+    <div th:if="${param.logout}" style="color: green;">
+        You have been successfully logged out.
+    </div>
+
+    <section style="display: flex; justify-content: center; align-items: center; padding-top: 2rem;">
+        <form th:action="@{/account/login}" method="post" style="max-width: 400px; width: 100%;">
+            <div class="form-group">
+                <label for="email">User email</label>
+                <input id="email" name="email" type="text" class="form-control"/>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input id="password" name="password" type="password" class="form-control"/>
+            </div>
+
+
+            <div class="form-actions">
+                <button type="submit" class="button button-save">Log in</button>
+            </div>
+        </form>
+    </section>
+</article>
+
+
+<footer th:replace="~{fragments/layout.html :: footer}"></footer>
+<div th:replace="~{fragments/layout.html :: toastScript}"></div>
+</body>
+</html>

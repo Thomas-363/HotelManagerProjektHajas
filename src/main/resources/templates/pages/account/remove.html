@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="~{fragments/layout.html :: head}"></head>
+
+<body>
+<header th:replace="~{fragments/layout.html :: header}"></header>
+
+<div th:replace="~{fragments/layout.html :: toastContainer}"></div>
+
+<article>
+    <div id="centered">
+
+        <h1>New Customer Accommodation</h1>
+
+        <section>
+            <form method="post"
+                  th:action="@{/account/remove}"
+                  class="form d-flex flex-column gap-2">
+
+
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input name="email" id="email" th:value="*{email}" class="form-control" type="email" />
+                </div>
+
+                <div class="form-group form-actions">
+                    <a class="button button-primary" th:href="@{/}">Back</a>
+                    <button type="submit" class="button button-delete">Remove</button>
+                </div>
+
+            </form>
+        </section>
+    </div>
+</article>
+
+<footer th:replace="~{fragments/layout.html :: footer}"></footer>
+<div th:replace="~{fragments/layout.html :: toastScript}"></div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{fragments/layout.html :: head}"></head>
+
+<body>
+<header th:replace="~{fragments/layout.html :: header}"></header>
+
+<div th:replace="~{fragments/layout.html :: toastContainer}"></div>
+
+<article class="dashboard-overview">
+    <section class="dashboard-header">
+        <h1>Welcome back 👋</h1>
+        <p>Today is <span th:text="${todayDate}"></span></p>
+    </section>
+
+    <section class="info-cards">
+        <div class="info-card">
+            <h2 th:text="${guestsToday}">45</h2>
+            <p>Currently accommodated guests</p>
+        </div>
+        <div class="info-card">
+            <h2 th:text="${availableRooms}">8</h2>
+            <p>Available rooms</p>
+        </div>
+    </section>
+    <div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;">
+        <div th:each="room : ${rooms}"
+             class="info-card room"
+             th:id="'room-' + ${room.number}"
+             th:style="'background-color:' + (${room.full} ? '#e74c3c' : '#2ecc71') + '; color: white;'">
+            <h2 th:text="'Izba ' + ${room.number}">Room</h2>
+        </div>
+    </div>
+</article>
+
+<footer th:replace="~{fragments/layout.html :: footer}"></footer>
+<div th:replace="~{fragments/layout.html :: toastScript}"></div>
+</body>
+</html>
