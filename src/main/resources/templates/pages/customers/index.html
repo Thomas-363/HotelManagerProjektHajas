@@ -32,7 +32,8 @@
                     <td th:text="${customer.mobileNumber}">Mobile</td>
                     <td th:text="${customer.roomNumber}">Room number</td>
                     <td>
-                        <a th:href="@{'/customers/index/edit/' + ${customer.customerId}}" class="button button-secondary">
+                        <a th:href="@{'/customers/index/edit/' + ${customer.customerId}}"
+                           class="button button-secondary">
                             <i class="fa fa-edit" aria-hidden="true"></i> Edit
                         </a>
                     </td>

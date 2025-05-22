@@ -18,28 +18,28 @@ public class ApplicationSecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .authorizeHttpRequests()
-                    .requestMatchers("/account/login", "/styles/**", "/images/**", "/scripts/**", "/fonts/**").permitAll()
-                    .anyRequest()
-                        .authenticated()
-                    .and()
+                .requestMatchers("/account/login", "/styles/**", "/images/**", "/scripts/**", "/fonts/**").permitAll()
+                .anyRequest()
+                .authenticated()
+                .and()
 
                 .formLogin()
-                    .loginPage("/account/login")
-                    .loginProcessingUrl("/account/login")
-                    .defaultSuccessUrl("/", true)
-                    .failureUrl("/account/login?login_error=true")
-                    .usernameParameter("email")
-                    .permitAll()
-                    .and()
+                .loginPage("/account/login")
+                .loginProcessingUrl("/account/login")
+                .defaultSuccessUrl("/", true)
+                .failureUrl("/account/login?login_error=true")
+                .usernameParameter("email")
+                .permitAll()
+                .and()
                 .logout()
-                    .logoutUrl("/account/logout")
-                    .logoutSuccessUrl("/account/login?logout=true")
-                    .and()
+                .logoutUrl("/account/logout")
+                .logoutSuccessUrl("/account/login?logout=true")
+                .and()
                 .build();
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 

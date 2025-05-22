@@ -20,19 +20,19 @@
 
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input id="name" th:field="*{name}" class="form-control" />
+                    <input id="name" th:field="*{name}" class="form-control"/>
                     <small class="text-danger" th:errors="*{name}"></small>
                 </div>
 
                 <div class="form-group">
                     <label for="surname">Surname</label>
-                    <input id="surname" th:field="*{surname}" class="form-control" />
+                    <input id="surname" th:field="*{surname}" class="form-control"/>
                     <small class="text-danger" th:errors="*{surname}"></small>
                 </div>
 
                 <div class="form-group">
                     <label for="email">E-mail</label>
-                    <input id="email" th:field="*{email}" class="form-control" type="email" />
+                    <input id="email" th:field="*{email}" class="form-control" type="email"/>
                     <small class="text-danger" th:errors="*{email}"></small>
                 </div>
                 <div class="form-group">
@@ -42,7 +42,8 @@
                 </div>
                 <div class="form-group">
                     <label for="confirm-password">Password confirmation</label>
-                    <input id="confirm-password" name="password" type="password" th:field="*{confirmPassword}" class="form-control"/>
+                    <input id="confirm-password" name="password" type="password" th:field="*{confirmPassword}"
+                           class="form-control"/>
                     <small class="text-danger" th:errors="*{confirmPassword}"></small>
                 </div>
                 <div class="form-group">
@@ -50,7 +51,8 @@
                     <select id="userRole" th:field="*{userRole}" class="form-control">
                         <option th:each="role : ${T(com.ictdemy.springHotelManager.models.enums.UserRole).values()}"
                                 th:value="${role.name}"
-                                th:text="${role.displayName}">Role</option>
+                                th:text="${role.displayName}">Role
+                        </option>
                     </select>
                     <small class="text-danger" th:errors="*{userRole}"></small>
                 </div>

@@ -14,6 +14,6 @@ public interface RoomRepository extends CrudRepository<RoomEntity, Long> {
 
     long countByOccupied(int getOccupied);
 
-    @Query ("SELECT r FROM RoomEntity r WHERE (r.capacity - r.occupied) >= :guestCount")
+    @Query("SELECT r FROM RoomEntity r WHERE (r.capacity - r.occupied) >= :guestCount")
     List<RoomEntity> findFreeRooms(@Param("guestCount") int guestCount);
-    }
+}

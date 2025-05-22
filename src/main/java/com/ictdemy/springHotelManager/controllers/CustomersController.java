@@ -48,7 +48,7 @@ public class CustomersController {
             return "pages/customers/accommodate";
         }
 
-        model.addAttribute("freeRooms",freeRoomsForGuests);
+        model.addAttribute("freeRooms", freeRoomsForGuests);
         model.addAttribute("customer", customer);
 
         List<RoomDTO> rooms = roomService.getAllRooms();
@@ -59,9 +59,8 @@ public class CustomersController {
 
     @PostMapping("accommodate")
     public String accommodateCustomer(@Valid @ModelAttribute("customer") CustomerDTO customer,
-                                        BindingResult result, Model model,
-                                        RedirectAttributes redirectAttributes)
-    {
+                                      BindingResult result, Model model,
+                                      RedirectAttributes redirectAttributes) {
 
         if (result.hasErrors())
             return renderCustomerCreateForm(customer, model);
@@ -74,12 +73,13 @@ public class CustomersController {
             }
             redirectAttributes.addFlashAttribute("toastMessage", "Customer was added successfully!");
             redirectAttributes.addFlashAttribute("toastType", "success");
-        }catch (DuplicateEmailException e){
+        } catch (DuplicateEmailException e) {
             result.rejectValue("email", "error", "Email already in use.");
             return renderCustomerCreateForm(customer, model);
         }
         return "redirect:/customers/index";
     }
+
     @GetMapping("/index")
     public String renderCustomers(Model model) {
         List<CustomerDTO> customers = customerService.getAll();
@@ -131,7 +131,7 @@ public class CustomersController {
         List<RoomEntity> freeRoomsForGuests = List.of();
         Optional<CustomerDTO> customerDTO = customerService.findById(customerId);
         try {
-            if(customerDTO.isPresent()){
+            if (customerDTO.isPresent()) {
                 freeRoomsForGuests = roomService.getFreeRoomsIncludingCurrent(1, customerDTO.get().getRoomNumber());
             }
         } catch (NoAvailableRoomsException e) {
@@ -148,7 +148,7 @@ public class CustomersController {
 
 
         model.addAttribute("customer", customerDTO.get());
-        model.addAttribute("freeRooms",freeRoomsForGuests);
+        model.addAttribute("freeRooms", freeRoomsForGuests);
 
 
         List<RoomDTO> rooms = roomService.getAllRooms();
@@ -168,7 +168,7 @@ public class CustomersController {
             model.addAttribute("rooms", rooms);
             return "pages/customers/edit";
         }
-        try{
+        try {
             boolean success = accommodateService.editCustomer(customer);
 
             if (!success) {
@@ -177,7 +177,7 @@ public class CustomersController {
             redirectAttributes.addFlashAttribute("toastMessage", "Customer updated successfully.");
             redirectAttributes.addFlashAttribute("toastType", "success");
 
-        } catch (DuplicateEmailException e){
+        } catch (DuplicateEmailException e) {
             result.rejectValue("email", "error", "Email already in use.");
             return renderEditCustomer(customer.getCustomerId(), model);
         }

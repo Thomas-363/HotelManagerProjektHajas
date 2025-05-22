@@ -31,7 +31,8 @@
                     <td th:text="${customer.email}">Email</td>
                     <td th:text="${customer.mobileNumber}">Mobile</td>
                     <td th:text="${customer.roomNumber}">Room number</td>
-                    <td><a th:href="@{'/customers/checkout/' + ${customer.customerId}}" class="button button-delete">Checkout</a></td>
+                    <td><a th:href="@{'/customers/checkout/' + ${customer.customerId}}" class="button button-delete">Checkout</a>
+                    </td>
                 </tr>
                 </tbody>
             </table>

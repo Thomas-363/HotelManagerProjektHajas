@@ -71,6 +71,7 @@ public class CustomerDTO {
     public long getCustomerId() {
         return customerId;
     }
+
     public void setCustomerId(long customerId) {
         this.customerId = customerId;
     }

@@ -37,26 +37,26 @@ public class AccountController {
     private UserMapper userMapper;
 
     @GetMapping("/login")
-    public  String renderLogin() {
+    public String renderLogin() {
 
         return "pages/account/login";
     }
 
     @GetMapping("/register")
-    public String renderRegister(@ModelAttribute("user") UserDTO user){
+    public String renderRegister(@ModelAttribute("user") UserDTO user) {
 
         return "pages/account/register";
     }
 
     @PostMapping("/register")
-    public String register(@Valid @ModelAttribute("user") UserDTO user, BindingResult result, RedirectAttributes redirectAttributes){
-        if (result.hasErrors()){
+    public String register(@Valid @ModelAttribute("user") UserDTO user, BindingResult result, RedirectAttributes redirectAttributes) {
+        if (result.hasErrors()) {
             return "pages/account/register";
         }
 
         try {
             userService.create(user);
-        } catch (DuplicateEmailException e){
+        } catch (DuplicateEmailException e) {
             result.rejectValue("email", "error", "Email already in use.");
             return "pages/account/register";
         } catch (PasswordsDoNotEqualException e) {
@@ -101,10 +101,10 @@ public class AccountController {
         return "pages/account/index";
     }
 
-    @GetMapping ("index/edit/{userId}")
+    @GetMapping("index/edit/{userId}")
     public String renderEditUser(@PathVariable("userId") Long userId, Model model) {
         Optional<UserDTO> userDTO = userService.findById(userId);
-        if (userDTO.isEmpty()){
+        if (userDTO.isEmpty()) {
             model.addAttribute("error", "User not found");
             return "redirect:/account/index";
         }
@@ -124,7 +124,7 @@ public class AccountController {
             userService.update(user);
             redirectAttributes.addFlashAttribute("toastMessage", "User updated successfully.");
             redirectAttributes.addFlashAttribute("toastType", "success");
-        } catch (DuplicateEmailException e){
+        } catch (DuplicateEmailException e) {
             result.rejectValue("email", "error", "Email already in use.");
             return "pages/account/edit";
         } catch (PasswordsDoNotEqualException e) {
@@ -135,7 +135,6 @@ public class AccountController {
 
         return "redirect:/account/index";
     }
-
 
 
 }

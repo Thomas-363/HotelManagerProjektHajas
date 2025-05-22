@@ -19,8 +19,8 @@
                   th:object="${customer}"
                   class="form d-flex flex-column gap-2">
 
-                <input type="hidden" th:field="*{customerId}" />
-                <input type="hidden" th:field="*{previousRoomNumber}" />
+                <input type="hidden" th:field="*{customerId}"/>
+                <input type="hidden" th:field="*{previousRoomNumber}"/>
                 <p>Previous room number: <span th:text="*{previousRoomNumber}">[prev]</span></p>
 
 
@@ -79,11 +79,6 @@
     </div>
 
 </article>
-
-
-
-
-
 
 
 <footer th:replace="~{fragments/layout.html :: footer}"></footer>

@@ -20,6 +20,4 @@ public interface CustomerMapper {
     void updateCustomerEntity(CustomerDTO source, @MappingTarget CustomerEntity target);
 
 
-
-
 }

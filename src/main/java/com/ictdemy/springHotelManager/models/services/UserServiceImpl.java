@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void create(UserDTO user) {
-        if (!user.getPassword().equals(user.getConfirmPassword())){
+        if (!user.getPassword().equals(user.getConfirmPassword())) {
             throw new PasswordsDoNotEqualException();
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));

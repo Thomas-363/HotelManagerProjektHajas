@@ -14,7 +14,8 @@ public interface UserMapper {
     UserDTO toDto(UserEntity user);
 
     @Mapping(target = "password", ignore = true)  // heslo NEPREPÍSAŤ pri update entity
-    @Mapping(target = "userId", ignore = true)   // userId NEPREPÍSAŤ pri update entity
+    @Mapping(target = "userId", ignore = true)
+        // userId NEPREPÍSAŤ pri update entity
     void updateEntityFromDTO(UserDTO dto, @MappingTarget UserEntity entity);
 
 

@@ -8,10 +8,15 @@ import java.util.List;
 
 public interface RoomService {
     List<RoomDTO> getAllRooms();
+
     RoomEntity findRoomByNumber(String roomNumber);
+
     void saveRoom(RoomEntity room);
+
     long getCountOfAvailableRooms();
+
     List<RoomEntity> getFreeRooms(int guestCount);
+
     List<RoomEntity> getFreeRoomsIncludingCurrent(int guestCount, String currentRoomNumber);
 
 
