@@ -2,6 +2,8 @@ package com.ictdemy.springHotelManager.data.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.*;
+import com.ictdemy.springHotelManager.data.entities.RoomEntity;
+
 
 @Entity
 public class CustomerEntity {
