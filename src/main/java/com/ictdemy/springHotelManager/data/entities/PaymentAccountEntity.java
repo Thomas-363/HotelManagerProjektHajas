@@ -3,6 +3,8 @@ package com.ictdemy.springHotelManager.data.entities;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+
 @Entity
 public class PaymentAccountEntity {
 
@@ -20,11 +22,59 @@ public class PaymentAccountEntity {
 
     @OneToOne
     @JoinColumn(name = "price_per_night")
-    private double pricePerNight;
+    private BigDecimal pricePerNight;
 
-
+    @Column(nullable = false)
     private int numberOfNights;
-    private boolean paymentCompleted;
-    
 
+    @Column(nullable = false)
+    private boolean paymentCompleted;
+
+    public long getPaymentAccountId() {
+        return paymentAccountId;
+    }
+
+    public void setPaymentAccountId(long paymentAccountId) {
+        this.paymentAccountId = paymentAccountId;
+    }
+
+    public long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(long customerId) {
+        this.customerId = customerId;
+    }
+
+    public long getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(long roomId) {
+        this.roomId = roomId;
+    }
+
+    public BigDecimal getPricePerNight() {
+        return pricePerNight;
+    }
+
+    public void setPricePerNight(BigDecimal pricePerNight) {
+        this.pricePerNight = pricePerNight;
+    }
+
+    public int getNumberOfNights() {
+        return numberOfNights;
+    }
+
+    public void setNumberOfNights(int numberOfNights) {
+        this.numberOfNights = numberOfNights;
+    }
+
+    public boolean isPaymentCompleted() {
+        return paymentCompleted;
+    }
+
+    public void setPaymentCompleted(boolean paymentCompleted) {
+        this.paymentCompleted = paymentCompleted;
+    }
 }
