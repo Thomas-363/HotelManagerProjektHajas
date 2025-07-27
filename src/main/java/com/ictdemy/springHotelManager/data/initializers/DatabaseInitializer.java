@@ -12,6 +12,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
+
 @Component
 public class DatabaseInitializer implements CommandLineRunner {
 
@@ -40,6 +42,7 @@ public class DatabaseInitializer implements CommandLineRunner {
                 room.setNumber(String.valueOf(i));
                 room.setCapacity(2);
                 room.setOccupied(0);
+                room.setPricePerNight(BigDecimal.valueOf(i+7));
                 roomRepository.save(room);
             }
         }

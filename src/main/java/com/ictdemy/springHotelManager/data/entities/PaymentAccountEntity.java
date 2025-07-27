@@ -14,15 +14,12 @@ public class PaymentAccountEntity {
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
-    private long customerId;
+    private CustomerEntity customer;
 
     @ManyToOne
     @JoinColumn(name = "room_id")
-    private long roomId;
+    private RoomEntity room;
 
-    @OneToOne
-    @JoinColumn(name = "price_per_night")
-    private BigDecimal pricePerNight;
 
     @Column(nullable = false)
     private int numberOfNights;
@@ -38,29 +35,22 @@ public class PaymentAccountEntity {
         this.paymentAccountId = paymentAccountId;
     }
 
-    public long getCustomerId() {
-        return customerId;
+    public CustomerEntity getCustomer() {
+        return customer;
     }
 
-    public void setCustomerId(long customerId) {
-        this.customerId = customerId;
+    public void setCustomer(CustomerEntity customer) {
+        this.customer = customer;
     }
 
-    public long getRoomId() {
-        return roomId;
+    public RoomEntity getRoom() {
+        return room;
     }
 
-    public void setRoomId(long roomId) {
-        this.roomId = roomId;
+    public void setRoom(RoomEntity room) {
+        this.room = room;
     }
 
-    public BigDecimal getPricePerNight() {
-        return pricePerNight;
-    }
-
-    public void setPricePerNight(BigDecimal pricePerNight) {
-        this.pricePerNight = pricePerNight;
-    }
 
     public int getNumberOfNights() {
         return numberOfNights;
