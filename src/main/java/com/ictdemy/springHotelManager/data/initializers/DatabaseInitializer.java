@@ -42,7 +42,9 @@ public class DatabaseInitializer implements CommandLineRunner {
                 room.setNumber(String.valueOf(i));
                 room.setCapacity(2);
                 room.setOccupied(0);
-                room.setPricePerNight(BigDecimal.valueOf(i+7));
+                if (i<=3) {
+                    room.setPricePerNight(BigDecimal.valueOf(10.0));
+                } else room.setPricePerNight(BigDecimal.valueOf(15.00));
                 roomRepository.save(room);
             }
         }
