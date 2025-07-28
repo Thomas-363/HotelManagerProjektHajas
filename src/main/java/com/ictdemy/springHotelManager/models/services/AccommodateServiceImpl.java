@@ -4,6 +4,7 @@ import com.ictdemy.springHotelManager.data.entities.CustomerEntity;
 import com.ictdemy.springHotelManager.data.entities.RoomEntity;
 import com.ictdemy.springHotelManager.models.dto.CustomerDTO;
 import com.ictdemy.springHotelManager.models.dto.mappers.CustomerMapper;
+import com.ictdemy.springHotelManager.models.dto.mappers.PaymentAccountMapper;
 import com.ictdemy.springHotelManager.models.exceptions.DuplicateEmailException;
 import com.ictdemy.springHotelManager.models.exceptions.PasswordsDoNotEqualException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +20,11 @@ public class AccommodateServiceImpl implements AccommodateService {
     @Autowired
     private RoomService roomService;
 
-
     @Autowired
     CustomerMapper customerMapper;
 
+    @Autowired
+    PaymentAccountMapper paymentAccountMapper;
 
     @Override
     public boolean accommodateCustomer(CustomerDTO customerDTO) {
