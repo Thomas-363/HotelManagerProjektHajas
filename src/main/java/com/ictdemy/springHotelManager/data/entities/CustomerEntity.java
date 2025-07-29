@@ -27,6 +27,10 @@ public class CustomerEntity {
     @JoinColumn(name = "room_id")
     private RoomEntity room;
 
+    @OneToOne
+    @JoinColumn(name = "payment_account_id")
+    PaymentAccountEntity paymentAccountEntity;
+
 
     public long getCustomerId() {
         return customerId;

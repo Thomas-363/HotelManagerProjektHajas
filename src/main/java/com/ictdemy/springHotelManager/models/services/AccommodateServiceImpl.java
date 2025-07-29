@@ -24,6 +24,9 @@ public class AccommodateServiceImpl implements AccommodateService {
     CustomerMapper customerMapper;
 
     @Autowired
+    PaymentAccountService paymentAccountService;
+
+    @Autowired
     PaymentAccountMapper paymentAccountMapper;
 
     @Override
@@ -43,6 +46,8 @@ public class AccommodateServiceImpl implements AccommodateService {
         customerService.accommodate(customerEntity);
         room.setOccupied(room.getOccupied() + 1);
         roomService.saveRoom(room);
+        paymentAccountService.createPaymentAccount(customerEntity);
+
 
         return true;
     }

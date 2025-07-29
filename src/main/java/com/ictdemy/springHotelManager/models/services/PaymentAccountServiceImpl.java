@@ -2,9 +2,22 @@ package com.ictdemy.springHotelManager.models.services;
 
 import com.ictdemy.springHotelManager.data.entities.CustomerEntity;
 import com.ictdemy.springHotelManager.data.entities.PaymentAccountEntity;
+import com.ictdemy.springHotelManager.data.repositories.PaymentAccountRepository;
+import com.ictdemy.springHotelManager.models.dto.mappers.PaymentAccountMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
+@Service
 public class PaymentAccountServiceImpl implements PaymentAccountService{
 
+
+    @Autowired
+    private PaymentAccountRepository paymentAccountRepository;
+
+    @Autowired
+    private PaymentAccountMapper paymentAccountMapper;
 
 
     @Override
@@ -14,10 +27,18 @@ public class PaymentAccountServiceImpl implements PaymentAccountService{
         paymentAccountEntity.setRoom(customerEntity.getRoom());
         paymentAccountEntity.setNumberOfNights(2);
         paymentAccountEntity.setPaymentCompleted(false);
+        paymentAccountRepository.save(paymentAccountEntity);
     }
 
     @Override
-    public void removePaymentAccount() {
+    public void removePaymentAccount(CustomerEntity customerEntity) {
+
 
     }
+
+    @Override
+    public Optional<PaymentAccountEntity> findByCustomer(CustomerEntity customerEntity) {
+        return paymentAccountRepository.findById(customerEntity.getCustomerId());
+    }
+
 }

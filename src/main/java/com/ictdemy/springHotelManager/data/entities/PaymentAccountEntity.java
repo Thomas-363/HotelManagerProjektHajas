@@ -12,11 +12,11 @@ public class PaymentAccountEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long paymentAccountId;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "customer_id")
     private CustomerEntity customer;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "room_id")
     private RoomEntity room;
 
