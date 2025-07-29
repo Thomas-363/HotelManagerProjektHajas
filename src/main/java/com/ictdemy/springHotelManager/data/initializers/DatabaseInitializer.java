@@ -2,9 +2,11 @@ package com.ictdemy.springHotelManager.data.initializers;
 
 
 import com.ictdemy.springHotelManager.data.entities.CustomerEntity;
+import com.ictdemy.springHotelManager.data.entities.PaymentAccountEntity;
 import com.ictdemy.springHotelManager.data.entities.RoomEntity;
 import com.ictdemy.springHotelManager.data.entities.UserEntity;
 import com.ictdemy.springHotelManager.data.repositories.CustomerRepository;
+import com.ictdemy.springHotelManager.data.repositories.PaymentAccountRepository;
 import com.ictdemy.springHotelManager.data.repositories.RoomRepository;
 import com.ictdemy.springHotelManager.data.repositories.UserRepository;
 import com.ictdemy.springHotelManager.models.enums.UserRole;
@@ -20,15 +22,17 @@ public class DatabaseInitializer implements CommandLineRunner {
     private final RoomRepository roomRepository;
     private final UserRepository userRepository;
     private final CustomerRepository customerRepository;
+    private final PaymentAccountRepository paymentAccountRepository;
     private final PasswordEncoder passwordEncoder;
 
     public DatabaseInitializer(RoomRepository roomRepository,
                                UserRepository userRepository,
-                               CustomerRepository customerRepository,
+                               CustomerRepository customerRepository, PaymentAccountRepository paymentAccountRepository,
                                PasswordEncoder passwordEncoder) {
         this.roomRepository = roomRepository;
         this.userRepository = userRepository;
         this.customerRepository = customerRepository;
+        this.paymentAccountRepository = paymentAccountRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -99,9 +103,15 @@ public class DatabaseInitializer implements CommandLineRunner {
                 RoomEntity room = roomRepository.findByNumber(String.valueOf(i + 1));
                 customer.setRoom(room);
                 room.setOccupied(room.getOccupied() + 1);
+                PaymentAccountEntity paymentAccountEntity = new PaymentAccountEntity();
+                paymentAccountEntity.setCustomer(customer);
+                paymentAccountEntity.setRoom(room);
+                paymentAccountEntity.setNumberOfNights(2);
+                paymentAccountEntity.setPaymentCompleted(false);
+
                 roomRepository.save(room);
                 customerRepository.save(customer);
-
+                paymentAccountRepository.save(paymentAccountEntity);
             }
         }
 
