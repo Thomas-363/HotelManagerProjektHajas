@@ -108,10 +108,10 @@ public class DatabaseInitializer implements CommandLineRunner {
                 paymentAccountEntity.setRoom(room);
                 paymentAccountEntity.setNumberOfNights(2);
                 paymentAccountEntity.setPaymentCompleted(false);
+                customer.setPaymentAccountEntity(paymentAccountEntity);
 
                 roomRepository.save(room);
                 customerRepository.save(customer);
-                paymentAccountRepository.save(paymentAccountEntity);
             }
         }
 

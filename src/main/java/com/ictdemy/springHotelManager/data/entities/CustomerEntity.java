@@ -27,9 +27,8 @@ public class CustomerEntity {
     @JoinColumn(name = "room_id")
     private RoomEntity room;
 
-    @OneToOne
-    @JoinColumn(name = "payment_account_id")
-    PaymentAccountEntity paymentAccountEntity;
+    @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
+    private PaymentAccountEntity paymentAccountEntity;
 
 
     public long getCustomerId() {
@@ -78,5 +77,13 @@ public class CustomerEntity {
 
     public void setRoom(RoomEntity room) {
         this.room = room;
+    }
+
+    public PaymentAccountEntity getPaymentAccountEntity() {
+        return paymentAccountEntity;
+    }
+
+    public void setPaymentAccountEntity(PaymentAccountEntity paymentAccountEntity) {
+        this.paymentAccountEntity = paymentAccountEntity;
     }
 }
