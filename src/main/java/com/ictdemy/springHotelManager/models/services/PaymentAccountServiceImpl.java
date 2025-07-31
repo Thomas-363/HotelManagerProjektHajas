@@ -21,13 +21,14 @@ public class PaymentAccountServiceImpl implements PaymentAccountService{
 
 
     @Override
-    public void createPaymentAccount(CustomerEntity customerEntity) {
+    public PaymentAccountEntity createPaymentAccount(CustomerEntity customerEntity) {
         PaymentAccountEntity paymentAccountEntity = new PaymentAccountEntity();
         paymentAccountEntity.setCustomer(customerEntity);
         paymentAccountEntity.setRoom(customerEntity.getRoom());
         paymentAccountEntity.setNumberOfNights(2);
         paymentAccountEntity.setPaymentCompleted(false);
-        paymentAccountRepository.save(paymentAccountEntity);
+
+        return paymentAccountEntity;
     }
 
     @Override

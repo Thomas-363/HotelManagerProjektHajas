@@ -1,6 +1,7 @@
 package com.ictdemy.springHotelManager.models.services;
 
 import com.ictdemy.springHotelManager.data.entities.CustomerEntity;
+import com.ictdemy.springHotelManager.data.entities.PaymentAccountEntity;
 import com.ictdemy.springHotelManager.data.entities.RoomEntity;
 import com.ictdemy.springHotelManager.models.dto.CustomerDTO;
 import com.ictdemy.springHotelManager.models.dto.mappers.CustomerMapper;
@@ -34,6 +35,7 @@ public class AccommodateServiceImpl implements AccommodateService {
 
 
         RoomEntity room = roomService.findRoomByNumber(customerDTO.getRoomNumber());
+        PaymentAccountEntity paymentAccountEntity = new PaymentAccountEntity();
 
         if (room == null) {
             return false;
@@ -43,10 +45,11 @@ public class AccommodateServiceImpl implements AccommodateService {
         if (customerService.emailExists(customerDTO.getEmail())) {
             throw new DuplicateEmailException();
         }
+        paymentAccountEntity = paymentAccountService.createPaymentAccount(customerEntity);
+        customerEntity.setPaymentAccountEntity(paymentAccountEntity);
         customerService.accommodate(customerEntity);
         room.setOccupied(room.getOccupied() + 1);
         roomService.saveRoom(room);
-        paymentAccountService.createPaymentAccount(customerEntity);
 
 
         return true;

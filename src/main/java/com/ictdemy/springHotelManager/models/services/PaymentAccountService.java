@@ -6,7 +6,7 @@ import com.ictdemy.springHotelManager.data.entities.PaymentAccountEntity;
 import java.util.Optional;
 
 public interface PaymentAccountService {
-    void createPaymentAccount(CustomerEntity customerEntity);
+    PaymentAccountEntity createPaymentAccount(CustomerEntity customerEntity);
 
     void removePaymentAccount(CustomerEntity customerEntity);
 
