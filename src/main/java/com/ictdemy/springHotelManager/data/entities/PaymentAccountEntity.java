@@ -27,6 +27,9 @@ public class PaymentAccountEntity {
     @Column(nullable = false)
     private boolean paymentCompleted;
 
+    @Column (nullable = false)
+    private BigDecimal totalPrice;
+
     public long getPaymentAccountId() {
         return paymentAccountId;
     }
@@ -66,5 +69,13 @@ public class PaymentAccountEntity {
 
     public void setPaymentCompleted(boolean paymentCompleted) {
         this.paymentCompleted = paymentCompleted;
+    }
+
+    public BigDecimal getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(BigDecimal totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }

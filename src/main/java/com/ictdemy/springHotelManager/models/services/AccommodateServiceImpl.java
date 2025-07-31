@@ -46,6 +46,9 @@ public class AccommodateServiceImpl implements AccommodateService {
             throw new DuplicateEmailException();
         }
         paymentAccountEntity = paymentAccountService.createPaymentAccount(customerEntity);
+        paymentAccountEntity.setNumberOfNights(customerDTO.getNumberOfNights());
+        paymentAccountEntity.setTotalPrice(paymentAccountService.updateTotalPrice(paymentAccountEntity));
+
         customerEntity.setPaymentAccountEntity(paymentAccountEntity);
         customerService.accommodate(customerEntity);
         room.setOccupied(room.getOccupied() + 1);

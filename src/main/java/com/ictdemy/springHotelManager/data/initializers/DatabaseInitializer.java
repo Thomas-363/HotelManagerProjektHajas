@@ -10,6 +10,7 @@ import com.ictdemy.springHotelManager.data.repositories.PaymentAccountRepository
 import com.ictdemy.springHotelManager.data.repositories.RoomRepository;
 import com.ictdemy.springHotelManager.data.repositories.UserRepository;
 import com.ictdemy.springHotelManager.models.enums.UserRole;
+import com.ictdemy.springHotelManager.models.services.PaymentAccountService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -23,16 +24,18 @@ public class DatabaseInitializer implements CommandLineRunner {
     private final UserRepository userRepository;
     private final CustomerRepository customerRepository;
     private final PaymentAccountRepository paymentAccountRepository;
+    private final PaymentAccountService paymentAccountService;
     private final PasswordEncoder passwordEncoder;
 
     public DatabaseInitializer(RoomRepository roomRepository,
                                UserRepository userRepository,
-                               CustomerRepository customerRepository, PaymentAccountRepository paymentAccountRepository,
+                               CustomerRepository customerRepository, PaymentAccountRepository paymentAccountRepository, PaymentAccountService paymentAccountService,
                                PasswordEncoder passwordEncoder) {
         this.roomRepository = roomRepository;
         this.userRepository = userRepository;
         this.customerRepository = customerRepository;
         this.paymentAccountRepository = paymentAccountRepository;
+        this.paymentAccountService = paymentAccountService;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -106,8 +109,9 @@ public class DatabaseInitializer implements CommandLineRunner {
                 PaymentAccountEntity paymentAccountEntity = new PaymentAccountEntity();
                 paymentAccountEntity.setCustomer(customer);
                 paymentAccountEntity.setRoom(room);
-                paymentAccountEntity.setNumberOfNights(2);
+                paymentAccountEntity.setNumberOfNights((i+2)/2);
                 paymentAccountEntity.setPaymentCompleted(false);
+                paymentAccountEntity.setTotalPrice(paymentAccountService.updateTotalPrice(paymentAccountEntity));
                 customer.setPaymentAccountEntity(paymentAccountEntity);
 
                 roomRepository.save(room);

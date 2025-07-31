@@ -1,9 +1,7 @@
 package com.ictdemy.springHotelManager.models.dto;
 
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.*;
 
 public class CustomerDTO {
 
@@ -26,6 +24,10 @@ public class CustomerDTO {
     private String roomNumber;
 
     private String previousRoomNumber;
+
+    @NotNull(message = "Enter number of nights")
+    @Min(value = 1, message = "At least one night")
+    private int numberOfNights;
 
 
     public String getName() {
@@ -82,5 +84,13 @@ public class CustomerDTO {
 
     public void setPreviousRoomNumber(String previousRoomNumber) {
         this.previousRoomNumber = previousRoomNumber;
+    }
+
+    public int getNumberOfNights() {
+        return numberOfNights;
+    }
+
+    public void setNumberOfNights(int numberOfNights) {
+        this.numberOfNights = numberOfNights;
     }
 }

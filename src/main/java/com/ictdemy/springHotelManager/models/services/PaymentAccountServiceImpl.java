@@ -7,6 +7,7 @@ import com.ictdemy.springHotelManager.models.dto.mappers.PaymentAccountMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
 @Service
@@ -25,7 +26,6 @@ public class PaymentAccountServiceImpl implements PaymentAccountService{
         PaymentAccountEntity paymentAccountEntity = new PaymentAccountEntity();
         paymentAccountEntity.setCustomer(customerEntity);
         paymentAccountEntity.setRoom(customerEntity.getRoom());
-        paymentAccountEntity.setNumberOfNights(2);
         paymentAccountEntity.setPaymentCompleted(false);
 
         return paymentAccountEntity;
@@ -41,5 +41,12 @@ public class PaymentAccountServiceImpl implements PaymentAccountService{
     public Optional<PaymentAccountEntity> findByCustomer(CustomerEntity customerEntity) {
         return paymentAccountRepository.findById(customerEntity.getCustomerId());
     }
+
+    @Override
+    public BigDecimal updateTotalPrice(PaymentAccountEntity paymentAccountEntity) {
+        BigDecimal totalPrice = paymentAccountEntity.getRoom().getPricePerNight().multiply(BigDecimal.valueOf(paymentAccountEntity.getNumberOfNights()));
+        return totalPrice;
+    }
+
 
 }
