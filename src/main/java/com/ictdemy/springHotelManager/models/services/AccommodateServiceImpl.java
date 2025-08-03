@@ -7,7 +7,6 @@ import com.ictdemy.springHotelManager.models.dto.CustomerDTO;
 import com.ictdemy.springHotelManager.models.dto.mappers.CustomerMapper;
 import com.ictdemy.springHotelManager.models.dto.mappers.PaymentAccountMapper;
 import com.ictdemy.springHotelManager.models.exceptions.DuplicateEmailException;
-import com.ictdemy.springHotelManager.models.exceptions.PasswordsDoNotEqualException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -49,7 +48,7 @@ public class AccommodateServiceImpl implements AccommodateService {
         paymentAccountEntity.setNumberOfNights(customerDTO.getNumberOfNights());
         paymentAccountEntity.setTotalPrice(paymentAccountService.updateTotalPrice(paymentAccountEntity));
 
-        customerEntity.setPaymentAccountEntity(paymentAccountEntity);
+        customerEntity.setPaymentAccount(paymentAccountEntity);
         customerService.accommodate(customerEntity);
         room.setOccupied(room.getOccupied() + 1);
         roomService.saveRoom(room);

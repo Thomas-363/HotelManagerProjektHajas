@@ -2,7 +2,6 @@ package com.ictdemy.springHotelManager.data.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.*;
-import com.ictdemy.springHotelManager.data.entities.RoomEntity;
 
 
 @Entity
@@ -28,7 +27,7 @@ public class CustomerEntity {
     private RoomEntity room;
 
     @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
-    private PaymentAccountEntity paymentAccountEntity;
+    private PaymentAccountEntity paymentAccount;
 
 
     public long getCustomerId() {
@@ -79,11 +78,11 @@ public class CustomerEntity {
         this.room = room;
     }
 
-    public PaymentAccountEntity getPaymentAccountEntity() {
-        return paymentAccountEntity;
+    public PaymentAccountEntity getPaymentAccount() {
+        return paymentAccount;
     }
 
-    public void setPaymentAccountEntity(PaymentAccountEntity paymentAccountEntity) {
-        this.paymentAccountEntity = paymentAccountEntity;
+    public void setPaymentAccount(PaymentAccountEntity paymentAccount) {
+        this.paymentAccount = paymentAccount;
     }
 }

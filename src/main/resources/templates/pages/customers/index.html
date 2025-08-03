@@ -21,6 +21,7 @@
                     <th>Email</th>
                     <th>Mobile</th>
                     <th>Room number</th>
+                    <th>Price for accommodation</th>
                     <th>Payment account</th>
                     <th>Edit customer</th>
                 </tr>
@@ -32,6 +33,7 @@
                     <td th:text="${customer.email}">Email</td>
                     <td th:text="${customer.mobileNumber}">Mobile</td>
                     <td th:text="${customer.roomNumber}">Room number</td>
+                    <td th:text="${customer.totalPrice + '$'}">Total price</td>
                     <td>
                         <a
                            class="button button-secondary">

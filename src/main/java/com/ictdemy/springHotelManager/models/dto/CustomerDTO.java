@@ -1,7 +1,10 @@
 package com.ictdemy.springHotelManager.models.dto;
 
 
+import com.ictdemy.springHotelManager.data.entities.PaymentAccountEntity;
 import jakarta.validation.constraints.*;
+
+import java.math.BigDecimal;
 
 public class CustomerDTO {
 
@@ -22,6 +25,8 @@ public class CustomerDTO {
     private String mobileNumber;
 
     private String roomNumber;
+
+    private BigDecimal totalPrice;
 
     private String previousRoomNumber;
 
@@ -92,5 +97,13 @@ public class CustomerDTO {
 
     public void setNumberOfNights(int numberOfNights) {
         this.numberOfNights = numberOfNights;
+    }
+
+    public BigDecimal getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(BigDecimal totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }
