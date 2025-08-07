@@ -3,6 +3,8 @@ package com.ictdemy.springHotelManager.data.entities;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+
 @Entity
 @Table(name = "rooms")
 public class RoomEntity {
@@ -20,6 +22,9 @@ public class RoomEntity {
 
     @Column(nullable = false)
     private int occupied;
+
+    @Column(nullable = false)
+    private BigDecimal pricePerNight;
 
 
     public long getId() {
@@ -55,5 +60,11 @@ public class RoomEntity {
         this.occupied = occupied;
     }
 
+    public BigDecimal getPricePerNight() {
+        return pricePerNight;
+    }
 
+    public void setPricePerNight(BigDecimal pricePerNight) {
+        this.pricePerNight = pricePerNight;
+    }
 }

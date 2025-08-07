@@ -54,6 +54,7 @@
     <h2 th:text="'Room n. ' + ${room.number}">Room</h2>
     <p th:text="${room.occupied == 0} ? 'Available' : 'Occupied by ' + ${room.occupied} + ' guest(s)'"></p>
     <p th:text="'Capacity: ' + ${room.capacity}"></p>
+    <p th:text="'Price: ' + ${room.pricePerNight} + ' $'"></p>
 </div>
 
 

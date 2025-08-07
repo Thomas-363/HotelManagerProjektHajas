@@ -2,12 +2,15 @@ package com.ictdemy.springHotelManager.models.dto;
 
 import jakarta.validation.constraints.NotBlank;
 
+import java.math.BigDecimal;
+
 public class RoomDTO {
 
     private Long id;
     private String number;
     private int occupied;
     private int capacity;
+    private BigDecimal pricePerNight;
 
     public Long getId() {
         return id;
@@ -39,5 +42,13 @@ public class RoomDTO {
 
     public void setCapacity(int capacity) {
         this.capacity = capacity;
+    }
+
+    public BigDecimal getPricePerNight() {
+        return pricePerNight;
+    }
+
+    public void setPricePerNight(BigDecimal pricePerNight) {
+        this.pricePerNight = pricePerNight;
     }
 }

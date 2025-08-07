@@ -1,11 +1,12 @@
 package com.ictdemy.springHotelManager.models.services;
 
 import com.ictdemy.springHotelManager.data.entities.CustomerEntity;
+import com.ictdemy.springHotelManager.data.entities.PaymentAccountEntity;
 import com.ictdemy.springHotelManager.data.entities.RoomEntity;
 import com.ictdemy.springHotelManager.models.dto.CustomerDTO;
 import com.ictdemy.springHotelManager.models.dto.mappers.CustomerMapper;
+import com.ictdemy.springHotelManager.models.dto.mappers.PaymentAccountMapper;
 import com.ictdemy.springHotelManager.models.exceptions.DuplicateEmailException;
-import com.ictdemy.springHotelManager.models.exceptions.PasswordsDoNotEqualException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,16 +20,21 @@ public class AccommodateServiceImpl implements AccommodateService {
     @Autowired
     private RoomService roomService;
 
-
     @Autowired
     CustomerMapper customerMapper;
 
+    @Autowired
+    PaymentAccountService paymentAccountService;
+
+    @Autowired
+    PaymentAccountMapper paymentAccountMapper;
 
     @Override
     public boolean accommodateCustomer(CustomerDTO customerDTO) {
 
 
         RoomEntity room = roomService.findRoomByNumber(customerDTO.getRoomNumber());
+        PaymentAccountEntity paymentAccountEntity = new PaymentAccountEntity();
 
         if (room == null) {
             return false;
@@ -38,9 +44,15 @@ public class AccommodateServiceImpl implements AccommodateService {
         if (customerService.emailExists(customerDTO.getEmail())) {
             throw new DuplicateEmailException();
         }
+        paymentAccountEntity = paymentAccountService.createPaymentAccount(customerEntity);
+        paymentAccountEntity.setNumberOfNights(customerDTO.getNumberOfNights());
+        paymentAccountEntity.setTotalPrice(paymentAccountService.updateTotalPrice(paymentAccountEntity));
+
+        customerEntity.setPaymentAccount(paymentAccountEntity);
         customerService.accommodate(customerEntity);
         room.setOccupied(room.getOccupied() + 1);
         roomService.saveRoom(room);
+
 
         return true;
     }
