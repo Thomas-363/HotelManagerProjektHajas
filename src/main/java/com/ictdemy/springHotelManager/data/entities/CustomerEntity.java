@@ -3,6 +3,7 @@ package com.ictdemy.springHotelManager.data.entities;
 import jakarta.persistence.Entity;
 import jakarta.persistence.*;
 
+
 @Entity
 public class CustomerEntity {
     @Id
@@ -24,6 +25,9 @@ public class CustomerEntity {
     @ManyToOne
     @JoinColumn(name = "room_id")
     private RoomEntity room;
+
+    @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
+    private PaymentAccountEntity paymentAccount;
 
 
     public long getCustomerId() {
@@ -72,5 +76,13 @@ public class CustomerEntity {
 
     public void setRoom(RoomEntity room) {
         this.room = room;
+    }
+
+    public PaymentAccountEntity getPaymentAccount() {
+        return paymentAccount;
+    }
+
+    public void setPaymentAccount(PaymentAccountEntity paymentAccount) {
+        this.paymentAccount = paymentAccount;
     }
 }

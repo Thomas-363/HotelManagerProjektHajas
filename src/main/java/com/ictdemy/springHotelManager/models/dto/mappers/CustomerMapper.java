@@ -14,6 +14,8 @@ public interface CustomerMapper {
 
     @Mapping(source = "customerId", target = "customerId")
     @Mapping(source = "room.number", target = "roomNumber")
+    @Mapping(source = "paymentAccount.numberOfNights", target = "numberOfNights")
+    @Mapping(source = "paymentAccount.totalPrice", target = "totalPrice")
     CustomerDTO toDTO(CustomerEntity source);
 
     @Mapping(target = "customerId", ignore = true)

@@ -12,7 +12,7 @@
     <p>Overview of all currently accommodated guests.</p>
 
     <section class="dashboard-overview">
-        <div class="info-card">
+        <div>
             <table class="table">
                 <thead>
                 <tr>
@@ -21,6 +21,8 @@
                     <th>Email</th>
                     <th>Mobile</th>
                     <th>Room number</th>
+                    <th>Price for accommodation</th>
+                    <th>Payment account</th>
                     <th>Edit customer</th>
                 </tr>
                 </thead>
@@ -31,6 +33,13 @@
                     <td th:text="${customer.email}">Email</td>
                     <td th:text="${customer.mobileNumber}">Mobile</td>
                     <td th:text="${customer.roomNumber}">Room number</td>
+                    <td th:text="${customer.totalPrice + '$'}">Total price</td>
+                    <td>
+                        <a
+                           class="button button-secondary">
+                            <i class="fa fa-edit" aria-hidden="true"></i>Show
+                        </a>
+                    </td>
                     <td>
                         <a th:href="@{'/customers/index/edit/' + ${customer.customerId}}"
                            class="button button-secondary">

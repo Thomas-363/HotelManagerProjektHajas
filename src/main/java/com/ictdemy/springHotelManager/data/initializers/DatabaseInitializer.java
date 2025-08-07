@@ -2,15 +2,20 @@ package com.ictdemy.springHotelManager.data.initializers;
 
 
 import com.ictdemy.springHotelManager.data.entities.CustomerEntity;
+import com.ictdemy.springHotelManager.data.entities.PaymentAccountEntity;
 import com.ictdemy.springHotelManager.data.entities.RoomEntity;
 import com.ictdemy.springHotelManager.data.entities.UserEntity;
 import com.ictdemy.springHotelManager.data.repositories.CustomerRepository;
+import com.ictdemy.springHotelManager.data.repositories.PaymentAccountRepository;
 import com.ictdemy.springHotelManager.data.repositories.RoomRepository;
 import com.ictdemy.springHotelManager.data.repositories.UserRepository;
 import com.ictdemy.springHotelManager.models.enums.UserRole;
+import com.ictdemy.springHotelManager.models.services.PaymentAccountService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+
+import java.math.BigDecimal;
 
 @Component
 public class DatabaseInitializer implements CommandLineRunner {
@@ -18,15 +23,19 @@ public class DatabaseInitializer implements CommandLineRunner {
     private final RoomRepository roomRepository;
     private final UserRepository userRepository;
     private final CustomerRepository customerRepository;
+    private final PaymentAccountRepository paymentAccountRepository;
+    private final PaymentAccountService paymentAccountService;
     private final PasswordEncoder passwordEncoder;
 
     public DatabaseInitializer(RoomRepository roomRepository,
                                UserRepository userRepository,
-                               CustomerRepository customerRepository,
+                               CustomerRepository customerRepository, PaymentAccountRepository paymentAccountRepository, PaymentAccountService paymentAccountService,
                                PasswordEncoder passwordEncoder) {
         this.roomRepository = roomRepository;
         this.userRepository = userRepository;
         this.customerRepository = customerRepository;
+        this.paymentAccountRepository = paymentAccountRepository;
+        this.paymentAccountService = paymentAccountService;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -40,6 +49,9 @@ public class DatabaseInitializer implements CommandLineRunner {
                 room.setNumber(String.valueOf(i));
                 room.setCapacity(2);
                 room.setOccupied(0);
+                if (i<=3) {
+                    room.setPricePerNight(BigDecimal.valueOf(10.0));
+                } else room.setPricePerNight(BigDecimal.valueOf(15.00));
                 roomRepository.save(room);
             }
         }
@@ -94,9 +106,16 @@ public class DatabaseInitializer implements CommandLineRunner {
                 RoomEntity room = roomRepository.findByNumber(String.valueOf(i + 1));
                 customer.setRoom(room);
                 room.setOccupied(room.getOccupied() + 1);
+                PaymentAccountEntity paymentAccountEntity = new PaymentAccountEntity();
+                paymentAccountEntity.setCustomer(customer);
+                paymentAccountEntity.setRoom(room);
+                paymentAccountEntity.setNumberOfNights((i+2)/2);
+                paymentAccountEntity.setPaymentCompleted(false);
+                paymentAccountEntity.setTotalPrice(paymentAccountService.updateTotalPrice(paymentAccountEntity));
+                customer.setPaymentAccount(paymentAccountEntity);
+
                 roomRepository.save(room);
                 customerRepository.save(customer);
-
             }
         }
 

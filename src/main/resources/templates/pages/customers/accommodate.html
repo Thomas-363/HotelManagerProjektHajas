@@ -44,6 +44,12 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="mobileNumber">Number of nights</label>
+                    <input id="numberOfNights" th:field="*{numberOfNights}" class="form-control"/>
+                    <small class="text-danger" th:errors="*{numberOfNights}"></small>
+                </div>
+
+                <div class="form-group">
                     <label for="roomNumber">Room Number</label>
 
                     <select id="roomNumber"
