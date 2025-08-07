@@ -124,7 +124,14 @@ src/test/java/com/ictdemy/springHotelManager/
 
 Here are some screenshots of the application:
 
-![Login](static/images/screenshots/Login.png)
+![Login](src/main/resources/static/images/screenshots/Login.png)
+![Homescreen](src/main/resources/static/images/screenshots/homescreen.png)
+![Accommodate](src/main/resources/static/images/screenshots/accommodate.png)
+![Rooms](src/main/resources/static/images/screenshots/rooms.png)
+![ListOfCustomers](src/main/resources/static/images/screenshots/ListOfCustomers.png)
+![Checkout](src/main/resources/static/images/screenshots/Checkout.png)
+![Employee](src/main/resources/static/images/screenshots/Employee.png)
+![HotelStaff](src/main/resources/static/images/screenshots/HotelStaff.png)
 
 ---
 
