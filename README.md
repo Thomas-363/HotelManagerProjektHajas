@@ -124,7 +124,7 @@ src/test/java/com/ictdemy/springHotelManager/
 
 Here are some screenshots of the application:
 
-![Login](static/images/screenshots/Screenshot 2025-08-07 091501.png)
+![Login](static/images/screenshots/Login.png)
 
 ---
 
